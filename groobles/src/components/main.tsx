@@ -4,27 +4,49 @@ import { Constants } from "../constants"
 import Grooble from "../Grooble";
 
 type MainProp = {}
-type MainState = {grooble: Grooble}
+type MainState = {
+    grooble1: Grooble
+    grooble2: Grooble
+    babyGrooble: Grooble
+}
 
 export default class Main extends React.Component<MainProp, MainState> {
-    constructor(props: any) {
+    constructor(props: MainProp) {
         super(props);
-        let defaultGrooble = new Grooble()
-        defaultGrooble.bodyColor = "Grey"
-        defaultGrooble.limbColor = "Grey"
 
         this.state = {
-            grooble: defaultGrooble,
+            grooble1: new Grooble(),
+            grooble2: new Grooble(),
+            babyGrooble: new Grooble()
         }
     }
 
-    renderGrooble(): JSX.Element {
+    renderAdultGroobles(): JSX.Element {
         return (
-            <GroobleComponent
-                name="Monster"
-                bodyColor={this.state.grooble.bodyColor}
-                limbColor={this.state.grooble.limbColor}
-            />
+            <div className="adultGroobles">
+                <GroobleComponent
+                    name="Monster"
+                    bodyColor={this.state.grooble1.bodyColor}
+                    limbColor={this.state.grooble1.limbColor}
+                />
+                <GroobleComponent
+                    name="Bob"
+                    bodyColor={this.state.grooble2.bodyColor}
+                    limbColor={this.state.grooble2.limbColor}
+                />
+            </div>
+        )
+    }
+
+    renderBabyGrooble(): JSX.Element {
+        return (
+            <div className="babyGrooble">
+                <GroobleComponent
+                    name="Monster"
+                    bodyColor={this.state.babyGrooble.bodyColor}
+                    limbColor={this.state.babyGrooble.limbColor}
+                />
+            </div>
         )
     }
 
@@ -33,26 +55,44 @@ export default class Main extends React.Component<MainProp, MainState> {
     }
 
     randomGrooble(): Grooble {
-        let grooble1 = new Grooble()
-        grooble1.bodyColor = this.randomColor()
-        grooble1.limbColor = this.randomColor()
-        return grooble1
+        let grooble = new Grooble()
+        grooble.bodyColor = this.randomColor()
+        grooble.limbColor = this.randomColor()
+        return grooble
     }
 
-    handleRandomGrooble(): void {
-        let grooble1 = this.randomGrooble()
+    breedGroobles(): Grooble {
+        let babyGrooble = new Grooble()
+        let groobles = [this.state.grooble1, this.state.grooble2]
+    
+        babyGrooble.bodyColor = groobles[Math.floor(Math.random()*2)].bodyColor
+        babyGrooble.limbColor = groobles[Math.floor(Math.random()*2)].limbColor
 
+        return babyGrooble
+    }
+
+    handleRandomGroobles(): void {
         this.setState({
-            grooble: grooble1
+            grooble1: this.randomGrooble(),
+            grooble2: this.randomGrooble()
+        })
+    }
+
+    handleBreedGroobles(): void {
+        let babyGrooble = this.breedGroobles()
+        
+        this.setState({
+            babyGrooble: babyGrooble
         })
     }
 
     render() {
-    
         return (
-            <div>
-                {this.renderGrooble()}
-                <button onClick={() => this.handleRandomGrooble()}>Random Grooble</button>
+            <div className="main">
+                {this.renderAdultGroobles()}
+                <button onClick={() => this.handleRandomGroobles()}>Random Groobles</button>
+                <button onClick={() => this.handleBreedGroobles()}>Breed Groobles</button>
+                {this.renderBabyGrooble()}
             </div>
         )
     }
