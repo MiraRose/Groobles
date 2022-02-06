@@ -23,7 +23,6 @@ button {
 }
 
 .adultGroobles {
-    /* background-color: darkgray; */
     display: flex;
     flex-direction: row;
     width: 550px;
@@ -32,10 +31,6 @@ button {
 
 .groobleBox {
     text-align: center;
-}
-
-.babyGrooble {
-    /* background-color: whitesmoke; */
 }
 
 .savedGrooblesBox {
