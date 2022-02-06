@@ -12,3 +12,12 @@
     width: 600px;
     align-items: center;
 }
+
+.babyGrooble {
+    background-color: whitesmoke;
+}
+
+.savedGrooblesBox {
+    display: flex;
+    flex-direction: row;
+}

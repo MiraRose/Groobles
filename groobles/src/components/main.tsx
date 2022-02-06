@@ -8,6 +8,7 @@ type MainState = {
     grooble1: Grooble
     grooble2: Grooble
     babyGrooble: Grooble
+    savedGroobles: Grooble[]
 }
 
 export default class Main extends React.Component<MainProp, MainState> {
@@ -17,7 +18,8 @@ export default class Main extends React.Component<MainProp, MainState> {
         this.state = {
             grooble1: new Grooble(),
             grooble2: new Grooble(),
-            babyGrooble: new Grooble()
+            babyGrooble: new Grooble(),
+            savedGroobles: []
         }
     }
 
@@ -50,6 +52,20 @@ export default class Main extends React.Component<MainProp, MainState> {
         )
     }
 
+    renderSavedGroobles(): JSX.Element {
+        return (
+            <div className="savedGrooblesBox">
+                {this.state.savedGroobles.map(grooble => <div key={grooble.name}>
+                    <GroobleComponent
+                        name="Monster"
+                        bodyColor={grooble.bodyColor}
+                        limbColor={grooble.limbColor}
+                    />
+                </div>)}
+            </div>
+        )
+    }
+
     randomColor(): string {
         return Constants.CSS_COLORS[Math.floor(Math.random() * Constants.CSS_COLORS.length)];
     }
@@ -64,9 +80,9 @@ export default class Main extends React.Component<MainProp, MainState> {
     breedGroobles(): Grooble {
         let babyGrooble = new Grooble()
         let groobles = [this.state.grooble1, this.state.grooble2]
-    
-        babyGrooble.bodyColor = groobles[Math.floor(Math.random()*2)].bodyColor
-        babyGrooble.limbColor = groobles[Math.floor(Math.random()*2)].limbColor
+
+        babyGrooble.bodyColor = groobles[Math.floor(Math.random() * 2)].bodyColor
+        babyGrooble.limbColor = groobles[Math.floor(Math.random() * 2)].limbColor
 
         return babyGrooble
     }
@@ -80,9 +96,16 @@ export default class Main extends React.Component<MainProp, MainState> {
 
     handleBreedGroobles(): void {
         let babyGrooble = this.breedGroobles()
-        
         this.setState({
             babyGrooble: babyGrooble
+        })
+    }
+
+    handleSaveGroobles(): void {
+        let savedGroobles = this.state.savedGroobles
+        savedGroobles.push(this.state.babyGrooble)
+        this.setState({
+            savedGroobles: savedGroobles
         })
     }
 
@@ -93,6 +116,8 @@ export default class Main extends React.Component<MainProp, MainState> {
                 <button onClick={() => this.handleRandomGroobles()}>Random Groobles</button>
                 <button onClick={() => this.handleBreedGroobles()}>Breed Groobles</button>
                 {this.renderBabyGrooble()}
+                <button onClick={() => this.handleSaveGroobles()}>Save Grooble</button>
+                {this.renderSavedGroobles()}
             </div>
         )
     }
