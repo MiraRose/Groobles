@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Grooble from "./components/grooble";
+import Main from "./components/main";
 
 ReactDOM.render(
 <div>
 <h1>Groobles</h1>
-<Grooble name="Monster" bodyColor="Red" limbColor="Blue"/> 
+<Main/> 
 </div>,
   document.getElementById("root")
 );

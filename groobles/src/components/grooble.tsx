@@ -1,5 +1,5 @@
 import * as React from "react";
-import GroobleInterface from '../GroobleInterface'
+import GroobleInterface from '../Grooble'
 
 export default class Grooble extends React.Component<GroobleInterface, {}> {
     constructor(props: GroobleInterface) {
