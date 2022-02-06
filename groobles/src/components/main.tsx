@@ -2,7 +2,7 @@ import * as React from "react";
 import GroobleComponent from "./grooble";
 import { Constants } from "../constants"
 import Grooble from "../Grooble";
-import { uniqueNamesGenerator, Config, adjectives, colors, animals } from 'unique-names-generator';
+import { uniqueNamesGenerator, Config, adjectives, colors, animals, names } from 'unique-names-generator';
 
 
 type MainProp = {}
@@ -24,6 +24,13 @@ export default class Main extends React.Component<MainProp, MainState> {
             savedGroobles: []
         }
     }
+
+    customConfig: Config = {
+        dictionaries: [adjectives, names],
+        separator: ' ',
+        length: 2,
+        style: 'capital',
+      };
 
     renderAdultGroobles(): JSX.Element {
         return (
@@ -72,13 +79,6 @@ export default class Main extends React.Component<MainProp, MainState> {
         return Constants.CSS_COLORS[Math.floor(Math.random() * Constants.CSS_COLORS.length)];
     }
 
-    customConfig: Config = {
-        dictionaries: [adjectives, colors, animals],
-        separator: ' ',
-        length: 2,
-        style: 'capital',
-      };
-      
     randomGrooble(): Grooble {
         let grooble = new Grooble()
         grooble.name = uniqueNamesGenerator(this.customConfig);
