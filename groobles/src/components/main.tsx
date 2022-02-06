@@ -1,9 +1,8 @@
 import * as React from "react";
 import GroobleComponent from "./grooble";
-import { Constants } from "../constants"
 import Grooble from "../Grooble";
 import { uniqueNamesGenerator, Config, adjectives, names } from 'unique-names-generator';
-
+import randomColor from 'randomcolor';
 
 type MainProp = {}
 type MainState = {
@@ -83,15 +82,11 @@ export default class Main extends React.Component<MainProp, MainState> {
         )
     }
 
-    randomColor(): string {
-        return Constants.CSS_COLORS[Math.floor(Math.random() * Constants.CSS_COLORS.length)];
-    }
-
     randomGrooble(): Grooble {
         let grooble = new Grooble()
         grooble.name = uniqueNamesGenerator(this.customConfig);
-        grooble.bodyColor = this.randomColor()
-        grooble.limbColor = this.randomColor()
+        grooble.bodyColor = randomColor()
+        grooble.limbColor = randomColor()
         return grooble
     }
 
