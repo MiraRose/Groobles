@@ -2,7 +2,7 @@ import * as React from "react";
 import GroobleComponent from "./grooble";
 import { Constants } from "../constants"
 import Grooble from "../Grooble";
-import { uniqueNamesGenerator, Config, adjectives, colors, animals, names } from 'unique-names-generator';
+import { uniqueNamesGenerator, Config, adjectives, names } from 'unique-names-generator';
 
 
 type MainProp = {}
@@ -30,21 +30,24 @@ export default class Main extends React.Component<MainProp, MainState> {
         separator: ' ',
         length: 2,
         style: 'capital',
-      };
+    };
 
     renderAdultGroobles(): JSX.Element {
         return (
-            <div className="adultGroobles">
-                <GroobleComponent
-                    name={this.state.grooble1.name}
-                    bodyColor={this.state.grooble1.bodyColor}
-                    limbColor={this.state.grooble1.limbColor}
-                />
-                <GroobleComponent
-                    name={this.state.grooble2.name}
-                    bodyColor={this.state.grooble2.bodyColor}
-                    limbColor={this.state.grooble2.limbColor}
-                />
+            <div>
+                <h2>Breeding Groobles</h2>
+                <div className="adultGroobles">
+                    <GroobleComponent
+                        name={this.state.grooble1.name}
+                        bodyColor={this.state.grooble1.bodyColor}
+                        limbColor={this.state.grooble1.limbColor}
+                    />
+                    <GroobleComponent
+                        name={this.state.grooble2.name}
+                        bodyColor={this.state.grooble2.bodyColor}
+                        limbColor={this.state.grooble2.limbColor}
+                    />
+                </div>
             </div>
         )
     }
@@ -52,6 +55,7 @@ export default class Main extends React.Component<MainProp, MainState> {
     renderBabyGrooble(): JSX.Element {
         return (
             <div className="babyGrooble">
+                <h2>Baby Grooble</h2>
                 <GroobleComponent
                     name={this.state.babyGrooble.name}
                     bodyColor={this.state.babyGrooble.bodyColor}
@@ -63,15 +67,19 @@ export default class Main extends React.Component<MainProp, MainState> {
 
     renderSavedGroobles(): JSX.Element {
         return (
-            <div className="savedGrooblesBox">
-                {this.state.savedGroobles.map(grooble => <div key={grooble.name}>
-                    <GroobleComponent
-                        name={grooble.name}
-                        bodyColor={grooble.bodyColor}
-                        limbColor={grooble.limbColor}
-                    />
-                </div>)}
+            <div>
+                <h2>Saved Groobles</h2>
+                <div className="savedGrooblesBox">
+                    {this.state.savedGroobles.map(grooble => <div key={grooble.name}>
+                        <GroobleComponent
+                            name={grooble.name}
+                            bodyColor={grooble.bodyColor}
+                            limbColor={grooble.limbColor}
+                        />
+                    </div>)}
+                </div>
             </div>
+
         )
     }
 

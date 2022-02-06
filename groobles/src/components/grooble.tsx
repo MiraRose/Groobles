@@ -9,7 +9,7 @@ export default class Grooble extends React.Component<GroobleInterface, {}> {
     render() {
         return (
             <div className="groobleBox">
-                <p><b>{this.props.name}</b></p>
+                <h4>{this.props.name}</h4>
                 <div>
                     <svg
                         width="67.478439mm"

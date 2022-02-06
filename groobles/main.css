@@ -1,20 +1,41 @@
+.body {
+    background-color: whitesmoke;
+}
+
 .main {
     background-color: antiquewhite;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 50em;
+    margin: auto;
+    padding: 10px;
+}
+
+.wholePage{
+    text-align: center;
+}
+
+button {
+    background-color: brown;
+    color: antiquewhite;
+    padding: 2px;
 }
 
 .adultGroobles {
-    background-color: darkgray;
+    /* background-color: darkgray; */
     display: flex;
     flex-direction: row;
     width: 550px;
     align-items: center;
 }
 
+.groobleBox {
+    text-align: center;
+}
+
 .babyGrooble {
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
 }
 
 .savedGrooblesBox {

@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import Main from "./components/main";
 
 ReactDOM.render(
-<div>
+<div className="wholePage">
 <h1>Groobles</h1>
 <Main/> 
 </div>,
