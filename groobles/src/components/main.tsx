@@ -2,6 +2,8 @@ import * as React from "react";
 import GroobleComponent from "./grooble";
 import { Constants } from "../constants"
 import Grooble from "../Grooble";
+import { uniqueNamesGenerator, Config, adjectives, colors, animals } from 'unique-names-generator';
+
 
 type MainProp = {}
 type MainState = {
@@ -27,12 +29,12 @@ export default class Main extends React.Component<MainProp, MainState> {
         return (
             <div className="adultGroobles">
                 <GroobleComponent
-                    name="Monster"
+                    name={this.state.grooble1.name}
                     bodyColor={this.state.grooble1.bodyColor}
                     limbColor={this.state.grooble1.limbColor}
                 />
                 <GroobleComponent
-                    name="Bob"
+                    name={this.state.grooble2.name}
                     bodyColor={this.state.grooble2.bodyColor}
                     limbColor={this.state.grooble2.limbColor}
                 />
@@ -44,7 +46,7 @@ export default class Main extends React.Component<MainProp, MainState> {
         return (
             <div className="babyGrooble">
                 <GroobleComponent
-                    name="Monster"
+                    name={this.state.babyGrooble.name}
                     bodyColor={this.state.babyGrooble.bodyColor}
                     limbColor={this.state.babyGrooble.limbColor}
                 />
@@ -57,7 +59,7 @@ export default class Main extends React.Component<MainProp, MainState> {
             <div className="savedGrooblesBox">
                 {this.state.savedGroobles.map(grooble => <div key={grooble.name}>
                     <GroobleComponent
-                        name="Monster"
+                        name={grooble.name}
                         bodyColor={grooble.bodyColor}
                         limbColor={grooble.limbColor}
                     />
@@ -70,8 +72,16 @@ export default class Main extends React.Component<MainProp, MainState> {
         return Constants.CSS_COLORS[Math.floor(Math.random() * Constants.CSS_COLORS.length)];
     }
 
+    customConfig: Config = {
+        dictionaries: [adjectives, colors, animals],
+        separator: ' ',
+        length: 2,
+        style: 'capital',
+      };
+      
     randomGrooble(): Grooble {
         let grooble = new Grooble()
+        grooble.name = uniqueNamesGenerator(this.customConfig);
         grooble.bodyColor = this.randomColor()
         grooble.limbColor = this.randomColor()
         return grooble
@@ -81,6 +91,7 @@ export default class Main extends React.Component<MainProp, MainState> {
         let babyGrooble = new Grooble()
         let groobles = [this.state.grooble1, this.state.grooble2]
 
+        babyGrooble.name = uniqueNamesGenerator(this.customConfig);
         babyGrooble.bodyColor = groobles[Math.floor(Math.random() * 2)].bodyColor
         babyGrooble.limbColor = groobles[Math.floor(Math.random() * 2)].limbColor
 

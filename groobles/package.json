@@ -15,6 +15,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "ts-loader": "^9.2.6",
+    "unique-names-generator": "^4.6.0",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2"
   }

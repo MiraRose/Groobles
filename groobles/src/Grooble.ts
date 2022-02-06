@@ -1,5 +1,5 @@
 export default class Grooble{
-    name: string;
+    name: string = "?";
     bodyColor: string = "Grey";
     limbColor: string = "Grey";
   }
